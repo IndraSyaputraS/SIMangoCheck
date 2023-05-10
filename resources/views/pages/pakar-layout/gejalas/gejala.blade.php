@@ -53,7 +53,7 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><button class="btn btn-success" href="#">Create</button></li>
+                        <li><a href="{{ route('gejala.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
@@ -63,18 +63,21 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>ID Gejala</th>
                             <th>Gejala</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tfoot>
-                    <tr>
-                        <th>Gejala</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
+                        <tr>
+                            <th>ID Gejala</th>
+                            <th>Gejala</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr>
+                            <td>GJ-01</td>
                             <td>daun melengkung ke atas, keriting, dan belang-belang?</td>
                             <td>
                                 <button class="btn btn-primary">Edit</button>
@@ -82,6 +85,7 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>GJ-01</td>
                             <td>daun sering menjadi layu, menguning dan rontok?</td>
                             <td>
                                 <button class="btn btn-primary">Edit</button>

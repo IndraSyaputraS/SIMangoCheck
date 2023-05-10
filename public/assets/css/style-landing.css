@@ -1881,6 +1881,9 @@ section {
   .box-form .right {
     width: 100%;
   }
+  .box-form .left{
+    width: 100%;
+  }
 }
 .box-form .right h5 {
   padding: 50px;

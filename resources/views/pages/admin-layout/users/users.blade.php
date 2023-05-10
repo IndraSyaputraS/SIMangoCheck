@@ -55,23 +55,21 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Gejala</th>
-                            <th>Penyakit</th>
-                            <th>Hama</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Alamat</th>
+                            <th>No.Telephone</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <hr>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <hr>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                            </td>
-                            <td>Kutu</td>
-                            <td>b</td>
+                            <td>Indra Syaputra Stiansyah</td>
+                            <td>indra@gmail.com</td>
+                            <td>Tulungagung</td>
+                            <td>085606072656</td>
+                            <td>User</td>
                             <td>
                                 <button class="btn btn-primary">Edit</button>
                                 <button class="btn btn-warning">Delete</button>

@@ -53,7 +53,7 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><button class="btn btn-success" href="#">Create</button></li>
+                        <li><a href="{{ route('aturan.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>

@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>Dashboard - Pakar</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="assets/css/styles.css" rel="stylesheet" />
+    <link href="/assets/css/styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/48fe8ef76a.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">

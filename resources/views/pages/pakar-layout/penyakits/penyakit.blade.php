@@ -46,6 +46,11 @@
             <li class="breadcrumb-item active">Penyakit</li>
         </ol>
         <div class="card mb-4">
+            {{-- @if($condition)
+            <div class="alert alert-success" role="alert">
+                A simple success alert—check it out!
+            </div>
+            @endif --}}
             <div class="card-header d-flex justify-content-between">
                 <h5 class="my-0"><i class="fas fa-table me-1"></i>DataTable</h5>
                 <div class="dropdown">
@@ -53,7 +58,7 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><button class="btn btn-success" href="{{ route('create.penyakit') }}">Create</button></li>
+                        <li><a href="{{ route('penyakit.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>

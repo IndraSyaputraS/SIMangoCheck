@@ -34,7 +34,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Role</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Dashboard Admin</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Role</li>
         </ol>
         <div class="card mb-4">
@@ -55,23 +55,17 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Gejala</th>
-                            <th>Penyakit</th>
-                            <th>Hama</th>
+                            <th>Role</th>
+                            <th>Created</th>
+                            <th>Updated</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <hr>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <hr>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                            </td>
-                            <td>Kutu</td>
-                            <td>b</td>
+                            <td>User</td>
+                            <td>05/05/2023 12.00.12</td>
+                            <td>05/05/2023 12.00.12</td>
                             <td>
                                 <button class="btn btn-primary">Edit</button>
                                 <button class="btn btn-warning">Delete</button>

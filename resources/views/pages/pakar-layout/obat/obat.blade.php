@@ -42,7 +42,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Obat</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard Pakar</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboardz</a></li>
             <li class="breadcrumb-item active">Obat</li>
         </ol>
         <div class="card mb-4">

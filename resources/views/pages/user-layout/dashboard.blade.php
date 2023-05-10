@@ -35,12 +35,12 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('penyakit') }}">
-                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-disease"></i></div>
+                    <a class="nav-link px-2 mx-1" style="color : #F5FEFD;" href="{{ route('konsultasi') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-chalkboard-user"></i></div>
                         Konsultasi
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('hama') }}">
-                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-spaghetti-monster-flying"></i></div>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('hasil.user') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
                         Hasil
                     </a>
                 </div>

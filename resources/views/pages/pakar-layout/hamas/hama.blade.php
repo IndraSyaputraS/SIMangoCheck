@@ -42,7 +42,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Hama</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard Pakar</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Hama</li>
         </ol>
         <div class="card mb-4">
@@ -53,7 +53,7 @@
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><button class="btn btn-success" href="#">Create</button></li>
+                        <li><a href="{{ route('hama.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
