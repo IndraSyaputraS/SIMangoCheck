@@ -1,11 +1,14 @@
 @extends('layout.layout')
+@section('title')
+<title>Dashboard - Pakar</title>
+@endsection
 @section('sidebar')
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard-pakar') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard.pakar') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -39,20 +42,11 @@
     </div>
     @endsection
     @section('content')
-    <style>
-        #preview {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border: 1px solid black;
-            padding: 5px;
-        }
-
-    </style>
     <div class="container-fluid px-4 mt-5">
+        <h1 class="mt-4">Create Gejala</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('penyakit') }}">Gejala</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('gejala') }}">Gejala</a></li>
             <li class="breadcrumb-item active">Create Gejala</li>
         </ol>
         <div class="card mb-4">
@@ -60,17 +54,14 @@
                 <h5 class="my-0">Create</h5>
             </div>
             <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">ID </label>
-                        <input type="text" class="form-control w-25" id="exampleFormControlInput1" placeholder="ID">
-                    </div>
+                <form action="{{ route('gejala.store') }}" method="POST">
+                @csrf
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Gejala</label>
-                        <input type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="Nama">
+                        <input name="nama" type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="Nama">
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-success"><a href="{{ route('penyakit.create') }}"></a>Create</button>
+                        <button type="submit" class="btn btn-success mt-3">Create</button>
                     </div>
                 </form>
             </div>

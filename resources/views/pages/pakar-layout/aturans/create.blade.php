@@ -5,7 +5,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard-pakar') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard.pakar') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -40,22 +40,15 @@
     @endsection
     @section('content')
     <style>
-        #preview {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border: 1px solid black;
-            padding: 5px;
-        }
-
         #selectedOptions {
             margin-top: 20px;
         }
 
     </style>
     <div class="container-fluid px-4 mt-5">
+        <h1 class="mt-4">Create Aturan</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="{{ route('aturan') }}">Aturan</a></li>
             <li class="breadcrumb-item active">Create Aturan</li>
         </ol>
@@ -64,21 +57,16 @@
                 <h5 class="my-0">Create</h5>
             </div>
             <div class="card-body">
-                <form>
+                <form action="{{ route('aturan.update') }}" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="selectOptions">Select Options:</label>
-                        <select multiple class="form-control" id="selectOptions">
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
-                            <option>Option 4</option>
-                            <option>Option 5</option>
+                        <label for="exampleFormControlTextarea1">Obat</label>
+                        <select class="form-select" id="gejala_id" name="gejala[]" multiple="multiple" aria-label="Default select example">
+                            <option selected disabled>Open this select menu</option>
+                            @foreach ( $gejala as $g )
+                            <option value="{{ $g->id }}">{{ $g->nama_gejala }}</option>
+                            @endforeach
                         </select>
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="exampleFormControlInput1">gejala</label>
-                        <input type="text" class="form-control w-25" id="exampleFormControlInput1" placeholder="ID">
-                    </div> --}}
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Penyakit</label>
                         <input type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="Nama">
@@ -88,7 +76,7 @@
                         <input type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="Nama">
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-success"><a href="#"></a>Create</button>
+                        <a href="{{ route('aturan') }}" class="btn btn-success">Create</a>
                     </div>
                 </form>
                 <div id="selectedOptions"></div>
@@ -96,20 +84,20 @@
         </div>
     </div>
     <script>
-        document.getElementById('selectOptions').addEventListener('change', function() {
-            var selectedOptions = Array.from(this.selectedOptions).map(function(option) {
-                return option.text;
-            });
-            document.getElementById('selectedOptions').innerHTML = '<strong>Selected Options:</strong> ' + selectedOptions.join(', ');
-
-            var selectedOptionsList = document.getElementById('selectedOptionsList');
-            selectedOptionsList.innerHTML = '';
-            selectedOptions.forEach(function(option) {
-                var li = document.createElement('li');
-                li.textContent = option;
-                selectedOptionsList.appendChild(li);
-            });
+        $(document).ready(function() {
+            $("#gejala_id").select2({
+                placeholder: "Select a Gejala"
+                , allowClear: true
+            , });
         });
 
     </script>
+    {{-- <script>
+     $(document).ready(function(){
+            $(".selectgejala").select2({
+                placeholder: 'Select',
+                allowClear: true
+            });
+        });
+    </script> --}}
     @endsection

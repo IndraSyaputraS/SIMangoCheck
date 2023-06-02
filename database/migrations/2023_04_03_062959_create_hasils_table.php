@@ -19,10 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('kode_penyakit');
             $table->unsignedBigInteger('kode_hama');
             $table->unsignedBigInteger('kode_gejala');
-            $table->foreign('kode_user')->references('id')->on('users');
-            $table->foreign('kode_penyakit')->references('id')->on('penyakits');
-            $table->foreign('kode_hama')->references('id')->on('hamas');
-            $table->foreign('kode_gejala')->references('id')->on('gejalas');
+            $table->foreign('kode_user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('kode_penyakit')->references('id')->on('penyakits')->onDelete('cascade');
+            $table->foreign('kode_hama')->references('id')->on('hamas')->onDelete('cascade');
+            $table->foreign('kode_gejala')->references('id')->on('gejalas')->onDelete('cascade');
             $table->timestamps();
         });
     }

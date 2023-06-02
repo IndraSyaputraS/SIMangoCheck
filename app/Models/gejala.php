@@ -4,13 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class gejala extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    protected $table = "gejalas";
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'id',
         'nama_gejala',
     ];
+
+    public function aturan(){
+        return $this->hasMany(aturan::class);
+    }
+    public function penyakit(){
+        return $this->belongsToMany(penyakit::class);
+    }    
 }

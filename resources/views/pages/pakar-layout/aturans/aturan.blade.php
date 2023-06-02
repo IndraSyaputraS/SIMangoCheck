@@ -1,11 +1,14 @@
 @extends('layout.layout')
+@section('title')
+<title>Dashboard - Pakar</title>
+@endsection
 @section('sidebar')
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard-pakar') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard.pakar') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -42,19 +45,19 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Aturan</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard Pakar</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Aturan</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="my-0"><i class="fas fa-table me-1"></i>DataTable</h5>
+                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Aturan</h5>
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><a href="{{ route('aturan.create') }}"><button class="btn btn-success">Create</button></a></li>
-                        <hr>
+                        {{-- <li><a href="{{ route('aturan.create') }}"><button class="btn btn-success">Create</button></a></li>
+                        <hr> --}}
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
                 </div>
@@ -63,43 +66,34 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Gejala</th>
+                            {{-- <th>Gejala</th> --}}
                             <th>Penyakit</th>
-                            <th>Hama</th>
+                            <th>Gejala</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @php
+                        $no=1;
+                    @endphp
+                        @foreach($penyakit as $p)
                         <tr>
+                            <td>{{ $p->nama_penyakit }}</td>
                             <td>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
+                                @foreach ($p->gejalas as $g)
+                                    <p>{{ $no++ }}. {{ $g->nama_gejala }}</p>
+                                @endforeach
                             </td>
-                            <td>Kutu</td>
-                            <td>b</td>
                             <td>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-warning">Delete</button>
+                                <a href="{{ route('aturan.edit', ['id' => $p->id]) }}" class="btn btn-primary">Edit</a>
+                                |
+                                <a href="{{ route('aturan.delete', ['id' => $p->id]) }}" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                            </td>
-                            <td>Kutu</td>
-                            <td>b</td>
-                            <td>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-warning">Delete</button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
     @endsection

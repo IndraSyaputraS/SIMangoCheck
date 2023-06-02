@@ -17,7 +17,7 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-people-group"></i></div>
                         Role
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="#">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('admin.hasil') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
                         Hasil
                     </a>
@@ -34,18 +34,18 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">User</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Dashboard Admin</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">User</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="my-0"><i class="fas fa-table me-1"></i>DataTable</h5>
+                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table User</h5>
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><button class="btn btn-success" href="#">Create</button></li>
+                        <li><a href="{{ route('user.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
@@ -63,6 +63,16 @@
                             <th>Action</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Alamat</th>
+                            <th>No.Telephone</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr>
                             <td>Indra Syaputra Stiansyah</td>

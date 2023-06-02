@@ -5,7 +5,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard-pakar') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard.pakar') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -42,12 +42,12 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Gejala</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboard Pakar</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Gejala</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="my-0"><i class="fas fa-table me-1"></i>DataTable</h5>
+                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Gejala</h5>
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
@@ -63,35 +63,21 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>ID Gejala</th>
-                            <th>Gejala</th>
+                            <th span="2" width="70%">Gejala</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>ID Gejala</th>
-                            <th>Gejala</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
+                        @foreach($gejalas as $g)
                         <tr>
-                            <td>GJ-01</td>
-                            <td>daun melengkung ke atas, keriting, dan belang-belang?</td>
+                            <td span="2" width="70%">{{ $g->nama_gejala }}</td>
                             <td>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-warning">Delete</button>
+                                <a href="{{ route('gejala.edit', ['id' => $g->id]) }}" class="btn btn-primary">Edit</a>
+                                |
+                                <a href="{{ route('gejala.delete', ['id' => $g->id]) }}" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>GJ-01</td>
-                            <td>daun sering menjadi layu, menguning dan rontok?</td>
-                            <td>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-warning">Delete</button>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

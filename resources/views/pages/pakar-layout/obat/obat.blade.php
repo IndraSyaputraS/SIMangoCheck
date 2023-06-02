@@ -5,7 +5,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard-pakar') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('dashboard.pakar') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -42,18 +42,18 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Obat</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard-pakar') }}">Dashboardz</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Obat</li>
         </ol>
         <div class="card mb-4">
-        <div class="card-header d-flex justify-content-between">
-                <h5 class="my-0"><i class="fas fa-table me-1"></i>DataTable</h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Obat</h5>
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><button class="btn btn-success" href="#">Create</button></li>
+                        <li><a href="{{ route('obat.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
@@ -69,24 +69,19 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Nama Obat</th>
-                        <th>Deskripsi</th>
-                        <th>Harga</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
                     <tbody>
+                        @foreach($obats as $o)
                         <tr>
-                            <td>PHEFOC</td>
-                            <td>PHEFOC adalah Formula Teknologi Mikroorganisme Matrix buatan PT. HCS yang menjadi solusi terbaik saat ini untuk pertanian dan peternakan anda. PHEFOC HCS (Pestisida, Herbisida, Fungisida Organik Cair) merupakan pembasmi organik terbaik terhadap hama tanaman, gulma, bakteri tanah dan jamur. Pestisida ini terbaik dalam membasmi hama tanaman wereng, serangga, ulat, dll. Selain itu, dapat memulihkan tanaman dari serangan bakteri tanah (sundep).</td>
-                            <td>Rp 65.000</td>
-                            <td class="d-flex justify-content-center">
-                                <button class="btn btn-primary">Edit</button><hr>
-                                <button class="btn btn-warning">Delete</button>
+                            <td>{{ $o->nama_obat}}</td>
+                            <td>{{ $o->deskripsi_obat}}</td>
+                            <td>{{ $o->harga_obat   }}</td>
+                            <td>
+                                <a href="{{ route('obat.edit', ['id' => $o->id]) }}" class="btn btn-primary">Edit</a>
+                                |
+                                <a href="{{ route('obat.delete', ['id' => $o->id]) }}" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

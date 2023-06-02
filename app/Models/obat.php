@@ -4,15 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class obat extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    protected $table = "obats";
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'id',
         'nama_obat',
         'deskripsi_obat',
         'harga_obat',
     ];
+
+    public function penyekit(){
+        return $this->hasMany(penyakit::class, 'id');
+    }
+    public function hama(){
+        return $this->hasMany(hama::class, 'id');
+    }
 }

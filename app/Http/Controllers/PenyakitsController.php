@@ -4,25 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\obat;
-use App\Models\gejala;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
 use App\Models\penyakit;
 
 class PenyakitsController extends Controller
 {
     function index()
     {
-        return view('pages.pakar-layout.penyakits.penyakit');
+        $penyakit = penyakit::all();
+        return view('pages.pakar-layout.penyakits.penyakit', ['penyakits' => $penyakit]);
     }
 
-    public function create()
+    function create()
     {
-        // $obat = obat::all();
-        // $gejala = gejala::all();
+        $obat = obat::all();
         $array = [
-            // 'obat' => $obat,
-            // 'gejala' => $gejala,
+            'obat' => $obat,
         ];
         return view('pages.pakar-layout.penyakits.create', $array);
     }
@@ -31,40 +28,51 @@ class PenyakitsController extends Controller
     {
         $penyakit = new Penyakit();
         $request->validate([
-            'nama_penyakit' => 'required|unique:sicknesses,sickness_name',
-            'deskripsi_penyakit' => 'required',
-            'solusi_penyakit' => 'required',
-            // 'id_obat' => 'required',
-            'foto_penyakit' => 'required|image|mimes:jpg,png,jpeg|max:10240',
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'solusi' => 'required',
+            'obat' => 'required',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg|max:10240',
         ]);
-        $file_foto = $request->file('foto_penyakit');
+        $file_foto = $request->file('gambar');
         $ekstensi_foto = $file_foto->extension();
         $nama_foto = date('ymdhis') . "." . $ekstensi_foto;
         $file_foto->move(public_path('img'), $nama_foto);
 
         $penyakit = Penyakit::Create([
-            'nama_penyakit' => $request->input('nama_penyakit'),
-            'deskripsi_penyakit' => $request->input('deskripsi_penyakit'),
-            'solusi_penyakit' => $request->input('solusi_penyakit'),
-            // 'obat_id' => $request->medicine_id,
+            'nama_penyakit' => $request->input('nama'),
+            'deskripsi_penyakit' => $request->input('deskripsi'),
+            'solusi_penyakit' => $request->input('solusi'),
+            'kode_obat' => $request->obat,
             'foto_penyakit' => $nama_foto,
         ]);
         $penyakit->save();
-        return redirect()->route('penyakit')->with('success-store-sickness', 'Data ' . $request->nama_penyakit . ' Saved Successfully');
+        return redirect()->route('penyakit');
+    }
+
+    function edit($id)
+    {
+        $penyakit = penyakit::find($id);
+        $obat = obat::all();
+        $array = [
+            'obat' => $obat,
+            'penyakit' => $penyakit,
+        ];
+        return view('pages.pakar-layout.penyakits.edit', $array);
     }
 
     function update(Request $request, $id)
     {
         $request->validate([
-            'nama_penyakit' => 'required|unique:penyakit,nama_penyakit',
-            'deskripsi_penyakit' => 'required',
-            'solusi_penyakit' => 'required',
-            // 'obat_id' => 'required',
-            'foto_penyakit' => 'image|mimes:jpg,png,jpeg|max:10240',
+            'nama' => 'required',
+            'deskripsi' => 'required',
+            'solusi' => 'required',
+            'obat' => 'required',
+            'gambar' => 'image|mimes:jpg,png,jpeg|max:10240',
         ]);
         $penyakit = Penyakit::find($id);
-        if ($request->hasFile('foto_penyakit')) {
-            $file_foto = $request->file('foto_penyakit');
+        if ($request->hasFile('gambar')) {
+            $file_foto = $request->file('gambar');
             $ekstensi_foto = $file_foto->getClientOriginalName();
             $nama_foto = date('ymdhis') . "." . $ekstensi_foto;
             $file_foto->move(public_path('img'), $nama_foto);
@@ -72,11 +80,18 @@ class PenyakitsController extends Controller
             File::delete(public_path('img') . '/' . $data_foto->foto_penyakit);
         }
         Penyakit::where('id', $id)->update([
-            'nama_penyakit' => $request->nama_penyakit,
-            'deskripsi_penyakit' => $request->sickness_description,
-            'solusi_penyakit' => $request->sickness_solution,
-            'foto_penyakit' => $request->sickness_image ? $nama_foto : $penyakit->foto_penyakit,
+            'nama_penyakit' => $request->nama,
+            'deskripsi_penyakit' => $request->deskripsi,
+            'solusi_penyakit' => $request->solusi,
+            'kode_obat' => $request->obat,
+            'foto_penyakit' => $request->gambar ? $nama_foto : $penyakit->foto_penyakit,
         ]);
-        return redirect()->route('penyakit')->with('success-update-sickness', 'Data ' . $request->sickness_name . ' Update Successfully');
+        return redirect()->route('penyakit');
+    }
+
+    function delete($id)
+    {
+        Penyakit::where('id', $id)->delete();
+        return redirect()->route('penyakit');
     }
 }

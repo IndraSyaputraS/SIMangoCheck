@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('deskripsi_penyakit');
             $table->text('solusi_penyakit');
             $table->unsignedBigInteger('kode_obat');
-            $table->foreign('kode_obat')->references('id')->on('obats');
+            $table->foreign('kode_obat')->references('id')->on('obats')->onDelete('cascade');
             $table->timestamps();
         });
     }
