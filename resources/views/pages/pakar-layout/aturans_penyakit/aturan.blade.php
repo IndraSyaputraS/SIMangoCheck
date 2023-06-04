@@ -1,4 +1,7 @@
 @extends('layout.layout')
+@section('title')
+<title>Dashboard - Pakar</title>
+@endsection
 @section('sidebar')
 <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
@@ -44,21 +47,19 @@
     @endsection
     @section('content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Hama</h1>
+        <h1 class="mt-4">Aturan Penyakit</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Hama</li>
+            <li class="breadcrumb-item active">Aturan Penyakit</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Hama</h5>
+                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Aturan Penyakit</h5>
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><a href="{{ route('hama.create') }}"><button class="btn btn-success">Create</button></a></li>
-                        <hr>
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
                 </div>
@@ -67,26 +68,27 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Nama Hama</th>
-                            <th>Deskripsi</th>
-                            <th>Solusi</th>
-                            <th>Obat</th>
-                            <th>Foto</th>
+                            <th>Penyakit</th>
+                            <th>Gejala</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($hamas as $h)
+                    @php
+                        $no=1;
+                    @endphp
+                        @foreach($penyakit as $p)
                         <tr>
-                            <td>{{ $h->nama_hama }}</td>
-                            <td>{{ $h->deskripsi_hama}}</td>
-                            <td>{{ $h->solusi_hama}}</td>
-                            <td>{{ $h->obat->nama_obat}}</td>
-                            <td><img  src='/img/{{ $h->foto_hama}}' width="200px"></td>
+                            <td>{{ $p->nama_penyakit }}</td>
                             <td>
-                                <a href="{{ route('hama.edit', ['id' => $h->id]) }}" class="btn btn-primary">Edit</a>
+                                @foreach ($p->gejalas as $g)
+                                    <p>{{ $no++ }}. {{ $g->nama_gejala }}</p>
+                                @endforeach
+                            </td>
+                            <td>
+                                <a href="{{ route('aturan.penyakit.edit', ['id' => $p->id]) }}" class="btn btn-primary">Edit</a>
                                 |
-                                <a href="{{ route('hama.delete', ['id' => $h->id]) }}" class="btn btn-danger">Hapus</a>
+                                <a href="{{ route('aturan.penyakit.delete', ['id' => $p->id]) }}" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
@@ -95,5 +97,4 @@
             </div>
         </div>
     </div>
-
     @endsection

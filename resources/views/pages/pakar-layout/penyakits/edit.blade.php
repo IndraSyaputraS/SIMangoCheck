@@ -28,9 +28,13 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-newspaper"></i></div>
                         Gejala
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.penyakit') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
-                        Aturan
+                        Aturan Penyakit
+                    </a>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.hama') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
+                        Aturan Hama
                     </a>
                 </div>
             </div>

@@ -17,7 +17,12 @@ class gejala extends Model
     public function aturan(){
         return $this->hasMany(aturan::class);
     }
+
     public function penyakit(){
         return $this->belongsToMany(penyakit::class);
-    }    
+    }
+
+    public function hama(){
+        return $this->belongsToMany(hama::class);
+    }     
 }

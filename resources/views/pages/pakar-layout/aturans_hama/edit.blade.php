@@ -25,9 +25,13 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-newspaper"></i></div>
                         Gejala
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.penyakit') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
-                        Aturan
+                        Aturan Penyakit
+                    </a>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.hama') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
+                        Aturan Hama
                     </a>
                 </div>
             </div>
@@ -46,40 +50,40 @@
 
     </style>
     <div class="container-fluid px-4 mt-5">
-        <h1 class="mt-4">Create Aturan</h1>
+        <h1 class="mt-4">Edit Aturan Hama</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('aturan') }}">Aturan</a></li>
-            <li class="breadcrumb-item active">Create Aturan</li>
+            <li class="breadcrumb-item"><a href="{{ route('aturan.hama') }}">Aturan Hama</a></li>
+            <li class="breadcrumb-item active">Edit Aturan Hama</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="my-0">Create</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('aturan.update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('aturan.hama.update', $hama->id) }}" method="POST">
+                @csrf
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Obat</label>
+                        <label for="exampleFormControlInput1">Penyakit</label>
+                        <input name="hama" type="text" class="form-control w-75" value="{{ $hama->nama_hama }}" id="exampleFormControlInput1" placeholder="Nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Gejala</label>
                         <select class="form-select" id="gejala_id" name="gejala[]" multiple="multiple" aria-label="Default select example">
-                            <option selected disabled>Open this select menu</option>
                             @foreach ( $gejala as $g )
-                            <option value="{{ $g->id }}">{{ $g->nama_gejala }}</option>
+                            <option value="{{ $g->id }}" @foreach ($hama->gejala as $hg )
+                                @if ($gejala->id == $hg->id)
+                                selected
+                                @endif
+                                @endforeach
+                                >{{ $g->nama_gejala }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Penyakit</label>
-                        <input type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="Nama">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Hama</label>
-                        <input type="text" class="form-control w-75" id="exampleFormControlInput1" placeholder="Nama">
-                    </div>
                     <div class="d-flex justify-content-end">
-                        <a href="{{ route('aturan') }}" class="btn btn-success">Create</a>
+                        <button type="submit" class="btn btn-success mt-3">Update</button>
                     </div>
                 </form>
-                <div id="selectedOptions"></div>
             </div>
         </div>
     </div>
@@ -92,12 +96,4 @@
         });
 
     </script>
-    {{-- <script>
-     $(document).ready(function(){
-            $(".selectgejala").select2({
-                placeholder: 'Select',
-                allowClear: true
-            });
-        });
-    </script> --}}
     @endsection

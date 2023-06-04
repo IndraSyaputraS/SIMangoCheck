@@ -48,37 +48,38 @@
 
         </div>
     </header><!-- End Header -->
-
+    <form action="{{ route('signup.create') }}" method="POST">
+        @csrf
         <div class="box-form">
             <div class="left">
                 <div class="overlay">
                     <h2>SIMangoCheck</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Curabitur et est sed felis aliquet sollicitudin</p>
-                        <br><br>
+                    <br><br>
                     <div class="d-flex justify-content-center">
                         <img src="/assets/assets/img/simangocheck.png" width="100%">
                     </div>
                 </div>
             </div>
             <div class="right">
-                <h5 align="center">Register</h5>
-                <div class="inputs" align="center">
-                    <input type="text" placeholder="Nama">
+                <h5 style="text-align:center">Register</h5>
+                <div class="inputs" style="text-align:center">
+                    <input name="nama" type="text" placeholder="Nama">
                     <br>
-                    <input type="text" placeholder="Email">
+                    <input name="email" type="text" placeholder="Email">
                     <br>
-                    <input type="password" placeholder="Password">
+                    <input name="password" type="password" placeholder="Password">
                 </div>
                 <br>
-                <p align="center">Already have an account? <a href="{{ route('login') }}">Login</a></p>
+                <p style="text-align:center">Already have an account? <a href="{{ route('login.page') }}">Login</a></p>
                 <div class="d-flex justify-content-center">
-                    <button><a href="{{ route('login') }}">Signup</a></button>
+                    <button type="submit">Signup</a></button>
                 </div>
             </div>
         </div>
         <!-- partial -->
-
+    </form>
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->

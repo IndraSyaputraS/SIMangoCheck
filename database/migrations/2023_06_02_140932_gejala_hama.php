@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('gejala_hama', function (Blueprint $table) {
             $table->id();
-            $table->enum('role',['Admin','Pakar','pengguna'])->default('Admin');
+            $table->unsignedBigInteger('hama_id')->unsigned();
+            $table->foreign('hama_id')->references('id')->on('hamas')->onDelete('cascade');
+            $table->unsignedBigInteger('gejala_id')->unsigned();
+            $table->foreign('gejala_id')->references('id')->on('gejalas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        //
     }
 };

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email_user')->unique();
             $table->string('pekerjaan_user');
             $table->string('telp_user');
-            $table->string('username_user');
             $table->string('password_user');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');

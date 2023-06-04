@@ -9,43 +9,53 @@
         <li class="breadcrumb-item active">Dashboard</li>
     </ol>
     <div class="row">
-        <div class="col-xl-2 col-md-6">
+        <div class="col-xl-2 col-md-6 mx-4">
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">Penyakit <i class="fas fa-disease ml-auto fa-lg px-2"></i></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white">2</a>
+                    <a name="penyakit" class="small text-white">{{ $penyakit }}</a>
                 </div>
             </div>
         </div>
-        <div class="col-xl-2 col-md-6">
+        <div class="col-xl-2 col-md-6 mx-4">
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Hama<i class="fas fa-spaghetti-monster-flying ml-auto fa-lg px-2"></i></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white">1</a>
+                    <a name="hama" class="small text-white">{{ $hama }}</a>
                 </div>
             </div>
         </div>
-        <div class="col-xl-2 col-md-6">
+        <div class="col-xl-2 col-md-6 mx-4">
             <div class="card bg-success text-white mb-4">
                 <div class="card-body">Obat<i class="fas fa-pills ml-auto fa-lg px-2"></i></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white">1</a>
+                    <a name="obat" class="small text-white">{{ $obat }}</a>
                 </div>
             </div>
         </div>
-        <div class="col-xl-2 col-md-6">
+        <div class="col-xl-2 col-md-6 mx-4">
             <div class="card bg-danger text-white mb-4">
                 <div class="card-body">Gejala<i class="fas fa-newspaper ml-auto fa-lg px-2"></i></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white">2</a>
+                    <a name="gejala" class="small text-white">{{ $gejala }}</a>
                 </div>
             </div>
         </div>
-        <div class="col-xl-2 col-md-6">
+    </div>
+    <div class="row">
+        <div class="col-xl-2 col-md-6 mx-4">
             <div class="card bg-info text-white mb-4">
-                <div class="card-body">Aturan<i class="fas fa-book-open ml-auto fa-lg px-2"></i></div>
+                <div class="card-body">Aturan Penyakit<i class="fas fa-book-open ml-auto fa-lg px-2"></i></div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white">2</a>
+                    <a name="aturan_penyakit" class="small text-white">{{ $aturan_penyakit }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-2 col-md-6 mx-4">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">Aturan Hama<i class="fas fa-book-open ml-auto fa-lg px-2"></i></div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a name="aturan_hama" class="small text-white">{{ $aturan_hama }}</a>
                 </div>
             </div>
         </div>
@@ -78,9 +88,13 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-newspaper"></i></div>
                         Gejala
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.penyakit') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
-                        Aturan
+                        Aturan Penyakit
+                    </a>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.hama') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
+                        Aturan Hama
                     </a>
                 </div>
             </div>
@@ -104,30 +118,20 @@
                             <th>Nama Penyakit</th>
                             <th>Deskripsi</th>
                             <th>Solusi</th>
+                            <th>Obat</th>
                             <th>Foto</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nama Penyakit</th>
-                            <th>Deskripsi</th>
-                            <th>Solusi</th>
-                            <th>Foto</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
+                        @foreach($tampil as $p)
                         <tr>
-                            <td>Gleosporium</td>
-                            <td>Gleosporium adalah genus dari jamur yang terdiri dari spesies-spesies yang dapat menyebabkan berbagai macam penyakit pada tanaman.</td>
-                            <td>Pengendalian penyakit Gleosporium dapat dilakukan dengan menghindari kondisi yang memungkinkan infeksi, seperti menjaga kebersihan lingkungan dan memotong bagian tanaman yang terinfeksi. Penggunaan fungisida juga dapat membantu mengendalikan infeksi pada tanaman. Namun, sebaiknya konsultasikan dengan ahli pertanian atau petani lokal untuk mengetahui cara terbaik untuk mengendalikan penyakit Gleosporium pada tanaman yang terdapat di wilayah Anda.</td>
-                            <td><img src="/assets/assets/img/Penyakit_Gleosporium.jpg"></td>
+                            <td>{{ $p->nama_penyakit }}</td>
+                            <td>{{ $p->deskripsi_penyakit}}</td>
+                            <td>{{ $p->solusi_penyakit}}</td>
+                            <td>{{ $p->obat->nama_obat}}</td>
+                            <td><img src='/img/{{ $p->foto_penyakit}}' width="200px"></td>
                         </tr>
-                        <tr>
-                            <td>Diplodia</td>
-                            <td>Diplodia pada pohon mangga adalah suatu jenis penyakit yang disebabkan oleh jamur Diplodia sp. Penyakit ini dapat menyerang buah, daun, ranting, dan cabang dari pohon mangga, dan menyebabkan kerusakan pada tanaman serta mengurangi kualitas dan hasil panen buah mangga.</td>
-                            <td>Membersihkan daun dan ranting yang terinfeksi dan membuangnya dari kebun. Mencegah luka pada pohon mangga saat melakukan pemangkasan atau pembersihan di sekitar pohon. Menghindari penyiraman berlebihan dan menjaga kelembaban yang sesuai di sekitar pohon mangga. Menggunakan fungisida yang sesuai dan disarankan oleh petani lokal atau ahli pertanian. Menjaga kebersihan lingkungan sekitar pohon mangga dan menerapkan rotasi tanaman untuk mencegah penyebaran penyakit.</td>
-                            <td><img src="/assets/assets/img/penyakit2.jpg"></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

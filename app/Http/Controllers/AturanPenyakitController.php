@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Models\aturan;
 use App\Models\gejala;
-use App\Models\hama;
 use App\Models\penyakit;
 
-class AturanController extends Controller
+class AturanPenyakitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isPakar');
+    }
+
     function index()
     {
         $penyakit = penyakit::all();
-        return view('pages.pakar-layout.aturans.aturan', ['penyakit' => $penyakit]);
-    }
-
-    function getGejala(Request $request){
-        
+        return view('pages.pakar-layout.aturans_penyakit.aturan', ['penyakit' => $penyakit]);
     }
 
     function edit($id)
@@ -29,7 +27,7 @@ class AturanController extends Controller
             'penyakit' => $penyakit,
             'gejala' => $gejala,
         ];
-        return view('pages.pakar-layout.aturans.edit', $array);
+        return view('pages.pakar-layout.aturans_penyakit.edit', $array);
     }
 
     function update(Request $request, $id)
@@ -45,12 +43,12 @@ class AturanController extends Controller
             'nama_penyakit' => $request->penyakit,
         ]);
         $penyakit->gejala()->sync($request->gejala);
-        return redirect() -> route('aturan');
+        return redirect() -> route('aturan.penyakit');
     }
 
     function delete($id)
     {
         penyakit::where('id', $id)->delete();
-        return redirect() -> route('aturan');
+        return redirect() -> route('aturan.penyakit');
     }
 }

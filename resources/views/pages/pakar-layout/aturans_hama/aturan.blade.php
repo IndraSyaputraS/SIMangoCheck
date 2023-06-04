@@ -28,9 +28,13 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-newspaper"></i></div>
                         Gejala
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.penyakit') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
-                        Aturan
+                        Aturan Penyakit
+                    </a>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.hama') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
+                        Aturan Hama
                     </a>
                 </div>
             </div>
@@ -43,21 +47,19 @@
     @endsection
     @section('content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Aturan</h1>
+        <h1 class="mt-4">Aturan Hama</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Aturan</li>
+            <li class="breadcrumb-item active">Aturan Hama</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Aturan</h5>
+                <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table Aturan Hama</h5>
                 <div class="dropdown">
                     <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Actions
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        {{-- <li><a href="{{ route('aturan.create') }}"><button class="btn btn-success">Create</button></a></li>
-                        <hr> --}}
                         <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
                     </ul>
                 </div>
@@ -66,8 +68,7 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            {{-- <th>Gejala</th> --}}
-                            <th>Penyakit</th>
+                            <th>Hama</th>
                             <th>Gejala</th>
                             <th>Action</th>
                         </tr>
@@ -76,18 +77,18 @@
                     @php
                         $no=1;
                     @endphp
-                        @foreach($penyakit as $p)
+                        @foreach($hama as $h)
                         <tr>
-                            <td>{{ $p->nama_penyakit }}</td>
+                            <td>{{ $h->nama_hama }}</td>
                             <td>
-                                @foreach ($p->gejalas as $g)
+                                @foreach ($h->gejalas as $g)
                                     <p>{{ $no++ }}. {{ $g->nama_gejala }}</p>
                                 @endforeach
                             </td>
                             <td>
-                                <a href="{{ route('aturan.edit', ['id' => $p->id]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('aturan.hama.edit', ['id' => $h->id]) }}" class="btn btn-primary">Edit</a>
                                 |
-                                <a href="{{ route('aturan.delete', ['id' => $p->id]) }}" class="btn btn-danger">Hapus</a>
+                                <a href="{{ route('aturan.penyakit.delete', ['id' => $h->id]) }}" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                         @endforeach

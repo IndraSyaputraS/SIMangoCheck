@@ -25,9 +25,13 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-newspaper"></i></div>
                         Gejala
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.penyakit') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
-                        Aturan
+                        Aturan Penyakit
+                    </a>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('aturan.hama') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-book-open"></i></div>
+                        Aturan Hama
                     </a>
                 </div>
             </div>
@@ -46,18 +50,18 @@
 
     </style>
     <div class="container-fluid px-4 mt-5">
-        <h1 class="mt-4">Edit Aturan</h1>
+        <h1 class="mt-4">Edit Aturan Penyakit</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('dashboard.pakar') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('aturan') }}">Aturan</a></li>
-            <li class="breadcrumb-item active">Edit Aturan</li>
+            <li class="breadcrumb-item"><a href="{{ route('aturan.penyakit') }}">Aturan Penyakit</a></li>
+            <li class="breadcrumb-item active">Edit Aturan Penyakit</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="my-0">Create</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('aturan.update', $penyakit->id) }}" method="POST">
+                <form action="{{ route('aturan.penyakit.update', $penyakit->id) }}" method="POST">
                 @csrf
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Penyakit</label>
@@ -77,7 +81,7 @@
                         </select>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-success mt-3">Create</button>
+                        <button type="submit" class="btn btn-success mt-3">Update</button>
                     </div>
                 </form>
             </div>

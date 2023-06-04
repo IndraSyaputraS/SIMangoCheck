@@ -7,25 +7,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'id',
         'nama_user',
-        'email',
+        'email_user',
         'pekerjaan_user',
         'telp_user',
-        'username_user',
-        'password_user'
+        'password_user',
+        'role_id',
     ];
 
     /**
@@ -46,4 +47,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles(){
+        return $this->belongsTo(role::class, 'role_id', 'id');
+    }
+
+    public function hasilPasien(){
+        return $this->hasMany(hasil::class, 'id');
+    }
 }

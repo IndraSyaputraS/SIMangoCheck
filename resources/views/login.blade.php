@@ -49,29 +49,40 @@
     </header><!-- End Header -->
 
     <main id="main">
-        <div class="box-form" style="margin-top : 130px">
-            <div class="left">
-                <div class="overlay">
-                    <p text-size="">SIMangoCheck</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Curabitur et est sed felis aliquet sollicitudin</p>
+        <form class="user" method="POST">
+            @csrf
+            <div class="box-form" style="margin-top : 130px">
+                <div class="left">
+                    <div class="overlay">
+                        <p text-size="">SIMangoCheck</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Curabitur et est sed felis aliquet sollicitudin</p>
+                    </div>
                 </div>
-            </div>
-            <div class="right">
-                <h5 align="center">Login</h5>
-                <div class="inputs" align="center">
-                    <input type="text" placeholder="username">
+                <div class="right">
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>@foreach ($errors->all() as $item)
+                            <li>{{ $item }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    <h5 align="center">Login</h5>
+                    <div class="inputs" align="center">
+                        {{-- <label></label> --}}
+                        <input type="email" name="email" placeholder="Email">
+                        <br>
+                        <input type="password" name="password" placeholder="Password">
+                    </div>
                     <br>
-                    <input type="password" placeholder="password">
-                </div>
-
-                <br>
-                <p align="center">Don't have an account? <a href="{{ route('signup') }}">Creat Your Account</a></p>
-                <div class="d-flex justify-content-center">
-                    <button><a href="{{ route('admin') }}">Login</a></button>
+                    <p align="center">Don't have an account? <a href="{{ route('signup') }}">Creat Your Account</a></p>
+                    <div class="d-flex justify-content-center">
+                        <button>Login</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <!-- partial -->
 
     </main><!-- End #main -->

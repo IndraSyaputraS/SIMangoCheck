@@ -21,4 +21,12 @@ class hama extends Model
     public function obat(){
         return $this->belongsTo(obat::class, 'kode_obat');
     }
+
+    public function gejala(){
+        return $this->belongsToMany(gejala::class)->withTimestamps();
+    }
+
+    public function gejalas(){
+        return $this->belongsToMany(gejala::class, 'gejala_hama', 'hama_id', 'gejala_id');
+    }
 }
