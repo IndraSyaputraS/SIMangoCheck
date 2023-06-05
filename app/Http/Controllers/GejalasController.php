@@ -7,6 +7,10 @@ use App\Models\gejala;
 
 class GejalasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isPakar');
+    }
     function index()
     {
         $gejala = gejala::all();

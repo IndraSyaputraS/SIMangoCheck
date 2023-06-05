@@ -1,17 +1,20 @@
 <?php
 
-use App\Http\Controllers\AturanPenyakitController;
-use App\Http\Controllers\AturanHamaController;
-use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\GejalasController;
-use App\Http\Controllers\HamasController;
-use App\Http\Controllers\HasilsController;
-use App\Http\Controllers\KonsultasiController;
-use App\Http\Controllers\LandingController;
-use App\Http\Controllers\ObatsController;
-use App\Http\Controllers\PenyakitsController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\{
+    AturanPenyakitController,
+    AturanHamaController,
+    Dashboard,
+    GejalasController,
+    PenyakitsController,
+    HamasController,
+    HasilAdminController,
+    HasilsController,
+    KonsultasiController,
+    LandingController,
+    ObatsController,
+    RoleController,
+    UsersController,
+};
 use App\Http\Middleware\isAdmin;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Auth;
@@ -27,31 +30,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
 //home
-Route::get('/home', [LandingController::class, 'index'])->name('welcome');
+Route::get('/', [LandingController::class, 'index'])->name('welcome');
 
-//login
-Route::get('/login', [LandingController::class, 'masuk'])->name('login.page');
-Route::post('/login', [LandingController::class, 'submit']);
-
-//register
-Route::get('/signup', [LandingController::class, 'signup'])->name('signup');
-Route::post('/signup', [LandingController::class, 'store'])->name('signup.create');    
-
-Route::group(['middleware' => ['isAdmin']], function() {
+Route::group(['prefix' => 'admin','middleware' => ['isAdmin']], function() {
     //admin
     Route::get('dashboard-admin', [Dashboard::class, 'admin'])->name('admin');
 
     //admin-user
     Route::get('/user', [UsersController::class, 'index'])->name('user');
-    Route::get('/user/create', [UsersController::class, 'create'])->name('user.create');
+    Route::get('/user/delete/{id}', [UsersController::class, 'delete'])->name('user.delete');
 
     //admin-role
     Route::get('/role', [RoleController::class, 'index'])->name('role');
     Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
 
     //admin-hasil
-    Route::get('/admin-hasil', [HasilsController::class, 'indexAdmin'])->name('admin.hasil');
+    Route::get('/admin-hasil', [HasilAdminController::class, 'hasil'])->name('admin.hasil');
 });
 
 
@@ -66,6 +63,8 @@ Route::group(['middleware' => ['isPakar']], function() {
     Route::get('/penyakit/edit/{id}', [PenyakitsController::class, 'edit'])->name('penyakit.edit');
     Route::post('/penyakit/edit/{id}', [PenyakitsController::class, 'update'])->name('penyakit.update');
     Route::get('/penyakit/delete/{id}', [PenyakitsController::class, 'delete'])->name('penyakit.delete');
+    Route::get('/penyakit/cetak', [PenyakitsController::class, 'cetak'])->name('penyakit.cetak');
+    
 
     //obat
     Route::get('/obat', [ObatsController::class, 'index'])->name('obat');
@@ -108,9 +107,16 @@ Route::group(['middleware' => ['isPengguna']], function() {
     Route::get('/dashboard-user', [Dashboard::class, 'user'])->name('dashboard-user');
 
     //user-konsultasi
-    Route::get('/konsultasi', [KonsultasiController::class, 'index'])->name('konsultasi');
-    Route::post('/konsultasi', [KonsultasiController::class, 'create'])->name('konsultasi.penyakit.check');
+    Route::get('/konsultasi-penyakit', [KonsultasiController::class, 'index_penyakit'])->name('konsultasi.penyakit');
+    Route::post('/konsultasi-penyakit', [KonsultasiController::class, 'check_penyakit'])->name('konsultasi.penyakit.check');
+    Route::get('/konsultasi-hama', [KonsultasiController::class, 'index_hama'])->name('konsultasi.hama');
+    Route::post('/konsultasi-hama', [KonsultasiController::class, 'check_hama'])->name('konsultasi.hama.check');
 
     //user-hasil
-    Route::get('/hasil', [HasilsController::class, 'indexUser'])->name('hasil.user');
+    Route::get('/hasil-penyakit', [HasilsController::class, 'indexPenyakit'])->name('hasil.penyakit.user');
+    Route::get('/hasil-hama', [HasilsController::class, 'indexHama'])->name('hasil.hama.user');
+    
+    //report
+    Route::get('/hasil-penyakit-cetak', [HasilsController::class, 'cetak1'])->name('hasil.penyakit.user.cetak'); 
 });
+

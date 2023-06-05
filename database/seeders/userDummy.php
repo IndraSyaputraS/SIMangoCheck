@@ -18,44 +18,69 @@ class userDummy extends Seeder
      */
     public function run()
     {
-        $userData = [
-            [
-                'nama_user' => 'Admin',
-                'email_user' => 'admin@gmail.com',
-                'pekerjaan_user' => 'Admin',
-                'telp_user' => '+62',
-                'password_user' => Hash::make('admin'),
-                'role_id' => '1',
-            ],
-            [
-                'nama_user' => 'Pakar',
-                'email_user' => 'pakar@gmail.com',
-                'pekerjaan_user' => 'Pakar',
-                'telp_user' => '+62',
-                'password_user' => Hash::make('pakar'),
-                'role_id' => '2',
-            ],
-            [
-                'nama_user' => 'Pengguna',
-                'email_user' => 'pengguna@gmail.com',
-                'pekerjaan_user' => 'Petani',
-                'telp_user' => '+62',
-                'password_user' => Hash::make('pengguna'),
-                'role_id' => '3',
-            ],
-        ];
+        User::create([
+            'nama' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'pekerjaan' => 'Admin',
+            'telp' => '+62',
+            'password' => Hash::make('admin'),
+            'role_id' => '1',
+        ]);
+        User::create([
+            'nama' => 'Pakar',
+            'email' => 'pakar@gmail.com',
+            'pekerjaan' => 'Pakar',
+            'telp' => '+62',
+            'password' => Hash::make('pakar'),
+            'role_id' => '2',
+        ]);
+        User::create([
+            'nama' => 'Pengguna',
+            'email' => 'pengguna@gmail.com',
+            'pekerjaan' => 'Petani',
+            'telp' => '+62',
+            'password' => Hash::make('pengguna'),
+            'role_id' => '3',
+        ]);
 
-        foreach($userData as $val){
-            DB::table('users')->insert([
-                'nama_user' => $val['nama_user'],
-                'email_user' => $val['email_user'],
-                'pekerjaan_user' => $val['pekerjaan_user'],
-                'telp_user' => $val['telp_user'],
-                'password_user' => $val['password_user'],
-                'role_id' => $val['role_id'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
-        }
+        // User::create = [
+        //     [
+        //         'nama' => 'Admin',
+        //         'email' => 'admin@gmail.com',
+        //         'pekerjaan' => 'Admin',
+        //         'telp' => '+62',
+        //         'password' => Hash::make('admin'),
+        //         'role_id' => '1',
+        //     ],
+        //     [
+        //         'nama' => 'Pakar',
+        //         'email' => 'pakar@gmail.com',
+        //         'pekerjaan' => 'Pakar',
+        //         'telp' => '+62',
+        //         'password' => Hash::make('pakar'),
+        //         'role_id' => '2',
+        //     ],
+        //     [
+        //         'nama' => 'Pengguna',
+        //         'email' => 'pengguna@gmail.com',
+        //         'pekerjaan' => 'Petani',
+        //         'telp' => '+62',
+        //         'password' => Hash::make('pengguna'),
+        //         'role_id' => '3',
+        //     ],
+        // ];
+
+        // foreach($userData as $val){
+        //     DB::table('users')->insert([
+        //         'nama' => $val['nama'],
+        //         'email' => $val['email'],
+        //         'pekerjaan' => $val['pekerjaan'],
+        //         'telp' => $val['telp'],
+        //         'password' => $val['password'],
+        //         'role_id' => $val['role_id'],
+        //         'created_at' => Carbon::now(),
+        //         'updated_at' => Carbon::now(),
+        //     ]);
+        // }
     }
 }

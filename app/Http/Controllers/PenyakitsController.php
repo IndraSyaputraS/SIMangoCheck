@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\obat;
+use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\File;
 use App\Models\penyakit;
 
 class PenyakitsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isPakar');
+    }
     function index()
     {
         $penyakit = penyakit::all();
@@ -93,5 +98,11 @@ class PenyakitsController extends Controller
     {
         Penyakit::where('id', $id)->delete();
         return redirect()->route('penyakit');
+    }
+
+    public function cetak(){
+        $penyakit = penyakit::all();
+        $pdf = PDF::loadView('pages.pakar-layout.penyakits.report', ['penyakit'=>$penyakit])->setPaper('a4', 'landscape');
+        return $pdf->download('Report-Penyakit.pdf');
     }
 }

@@ -29,4 +29,8 @@ class hama extends Model
     public function gejalas(){
         return $this->belongsToMany(gejala::class, 'gejala_hama', 'hama_id', 'gejala_id');
     }
+
+    public function hasil_hama(){
+        return $this->belongsToMany(hasil_hama::class, 'id');
+    }
 }

@@ -21,13 +21,14 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nama_user',
-        'email_user',
-        'pekerjaan_user',
-        'telp_user',
-        'password_user',
+        'nama',
+        'email',
+        'pekerjaan',
+        'telp',
+        'password',
         'role_id',
     ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,11 +49,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
-        return $this->belongsTo(role::class, 'role_id', 'id');
+    public function hasil(){
+        return $this->hasMany(hasil::class, 'id');
     }
 
-    public function hasilPasien(){
-        return $this->hasMany(hasil::class, 'id');
+    public function hasil_hama(){
+        return $this->hasMany(hasil_hama::class, 'id');
     }
 }

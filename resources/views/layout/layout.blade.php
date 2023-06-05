@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    @yield('title')
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/assets/css/styles.css" rel="stylesheet" />
+    @yield('title')
     <!-- Select2 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"   />
+
 </head>
+
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -29,7 +31,15 @@
                     {{-- <li><a class="dropdown-item" href="{{ route('profile.user') }}">Profile</a>
             </li>
             <hr> --}}
-            <li><a class="dropdown-item" href="{{ route('welcome') }}">Logout</a></li>
+
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                <i class="bx bx-power-off me-2"></i>
+                <span class="align-middle">Log Out</span>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </a>
         </ul>
         </li>
         </ul>
@@ -50,12 +60,13 @@
     </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="assets/js/scripts.js"></script>
+    <script src="/assets/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/assets/demo/chart-area-demo.js"></script>
-    <script src="assets/assets/demo/chart-bar-demo.js"></script>
+    <script src="/assets/assets/demo/chart-area-demo.js"></script>
+    <script src="/assets/assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="assets/js/datatables-simple-demo.js"></script>
+    <script src="/assets/js/datatables-simple-demo.js"></script>
     <script src="https://kit.fontawesome.com/48fe8ef76a.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\File;
 
 class HamasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isPakar');
+    }
     function index()
     {
         $hama = hama::all();

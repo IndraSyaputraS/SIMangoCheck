@@ -13,10 +13,6 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-user"></i></div>
                         User
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('role') }}">
-                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-people-group "></i></div>
-                        Role
-                    </a>
                     <a class="nav-link" style="color : #F5FEFD;" href="#">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
                         Hasil
@@ -52,33 +48,33 @@
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
-                        <tr>
-                            <th>Penyakit</th>
-                            <th>Hama</th>
-                            <th>Gejala</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Penyakit</th>
-                            <th>Hama</th>
-                            <th>Gejala</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
+                        <thead>
+                            <tr>
+                                <th>ID User</th>
+                                <th>DateTime</th>
+                                <th>Penyakit</th>
+                                <th>gejala</th>
+                            </tr>
+                        </thead>
                     <tbody>
+                        @php
+                        $no=1;
+                        @endphp
+                        @foreach ($hasil as $h)
                         <tr>
-                            <td>Gleosporium</td>
-                            <td> - </td>
+                            <td>{{ $h->user_id }}</td>
+                            <td>{{ $h->datetime }}</td>
+                            <td>{{ $h->penyakit->nama_penyakit }}</td>
                             <td>
-                                <p>daun sering menjadi layu, menguning dan rontok?</p><hr>
-                                <p>daun melengkung ke atas, keriting, dan belang-belang?</p>
-                            </td>
-                            <td>
-                                <button class="btn btn-warning">Delete</button>
+                                @foreach ($h->gejala as $g )
+                                <p>{{ $no++ }}. {{ $g->nama_gejala }}</p>
+                                @endforeach
                             </td>
                         </tr>
+                        @php
+                        $no=1;
+                        @endphp
+                        @endforeach
                     </tbody>
                 </table>
             </div>

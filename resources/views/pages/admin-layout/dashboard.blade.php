@@ -9,16 +9,13 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <a class="nav-link" style="color : #F5FEFD;" href="{{ route('admin') }}">
-                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i>
+                        </div>
                         Dashboard
                     </a>
                     <a class="nav-link" style="color : #F5FEFD;" href="{{ route('user') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-user"></i></div>
                         User
-                    </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('role') }}">
-                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-people-group "></i></div>
-                        Role
                     </a>
                     <a class="nav-link" style="color : #F5FEFD;" href="{{ route('admin.hasil') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
@@ -44,7 +41,7 @@
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body">User<i class="fas fa-user ml-auto fa-lg px-2"></i></div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white">2</a>
+                        <a class="small text-white">{{ $user }}</a>
                     </div>
                 </div>
             </div>
@@ -79,39 +76,24 @@
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Alamat</th>
-                            <th>No.Telephone</th>
-                            <th>Role</th>
+                            <th>Pekerjaan</th>
+                            <th>Telepon</th>
+                            <th>Role ID</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Alamat</th>
-                            <th>No.Telephone</th>
-                            <th>Role</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
+                        @foreach($users as $u)
                         <tr>
-                            <td>Indra Syaputra Stiansyah</td>
-                            <td>indra@gmail.com</td>
-                            <td>Tulungagung</td>
-                            <td>085606072656</td>
-                            <td>User</td>
+                            <td>{{ $u->nama }}</td>
+                            <td>{{ $u->email }}</td>
+                            <td>{{ $u->pekerjaan }}</td>
+                            <td>{{ $u->telp }}</td>
+                            <td>{{ $u->role_id }}</td>
                         </tr>
-                        <tr>
-                            <td>Dani Irwansyah</td>
-                            <td>dani@gmail.com</td>
-                            <td>Tulungagung</td>
-                            <td>089376223158</td>
-                            <td>Pakar</td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
     @endsection

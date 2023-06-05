@@ -64,7 +64,7 @@
                     <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
                         <li><a href="{{ route('penyakit.create') }}"><button class="btn btn-success">Create</button></a></li>
                         <hr>
-                        <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
+                        <li><a class="btn btn-danger" href="{{ route('penyakit.cetak') }}">Cetak PDF</a></li>
                     </ul>
                 </div>
             </div>

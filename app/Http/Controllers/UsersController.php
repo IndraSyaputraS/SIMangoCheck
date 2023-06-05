@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     function index(){
-        return view('pages.admin-layout.users.users');
+        $user=User::all();
+        return view('pages.admin-layout.users.users', ['user'=>$user]);
     }
 
-    function create(){
-        return view('pages.admin-layout.users.create');
+    function delete($id){
+        $user=user::where('id', $id)->delete();
+        return view('pages.admin-layout.users.users');
     }
 }

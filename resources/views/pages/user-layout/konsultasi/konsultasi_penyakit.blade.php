@@ -9,17 +9,21 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
-                    <a class="nav-link px-2 mx-1" style="color : #F5FEFD;" href="{{ route('konsultasi') }}">
+                    <a class="nav-link px-2 mx-1" style="color : #F5FEFD;" href="{{ route('konsultasi.penyakit') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-chalkboard-user"></i></div>
                         Konsultasi Penyakit
                     </a>
-                    <a class="nav-link px-2 mx-1" style="color : #F5FEFD;" href="{{ route('konsultasi') }}">
+                    <a class="nav-link px-2 mx-1" style="color : #F5FEFD;" href="{{ route('konsultasi.hama') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-chalkboard-user"></i></div>
                         Konsultasi Hama
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('hasil.user') }}">
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('hasil.penyakit.user') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
-                        Hasil
+                        Hasil Konsul Penyakit
+                    </a>
+                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('hasil.hama.user') }}">
+                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
+                        Hasil Konsul Hama
                     </a>
                 </div>
             </div>
@@ -32,24 +36,28 @@
     @endsection
     @section('content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Konsultasi</h1>
+        <h1 class="mt-4">Konsultasi Penyakit</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{ route('dashboard-user') }}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Konsultasi</li>
+            <li class="breadcrumb-item active">Konsultasi Penyakit</li>
         </ol>
         <div class="card mb-4">
             <div class="card-header d-flex justify-content-between">
                 <h5 class="my-0"><i class="fas fa-table me-1"></i>Konsultasi Penyakit</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('konsultasi.penyakit.check') }}">
+                <form action="{{ route('konsultasi.penyakit.check') }}" method="POST">
+                @csrf
                     <div class="form-check">
-                        @foreach ($gejalas as $g)
-                        <input name="gejala" value="{{ $g->id }}" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        @foreach ($gejala as $g)
+                        <input name="gejala[]" value="{{ $g->id }}" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         <p class="form-check-label" for="flexCheckDefault">
                             {{ $g->nama_gejala }}
                         </p>
                         @endforeach
+                        <div class="form-group d-flex justify-content-start">
+                            <button type="submit" class="btn btn-primary">Check Penyakit</button>
+                        </div>
                     </div>
                 </form>
             </div>

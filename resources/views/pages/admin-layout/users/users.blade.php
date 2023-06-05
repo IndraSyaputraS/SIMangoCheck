@@ -13,10 +13,6 @@
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-user"></i></div>
                         User
                     </a>
-                    <a class="nav-link" style="color : #F5FEFD;" href="{{ route('role') }}">
-                        <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-people-group"></i></div>
-                        Role
-                    </a>
                     <a class="nav-link" style="color : #F5FEFD;" href="{{ route('admin.hasil') }}">
                         <div class="sb-nav-link-icon" style="color : #F5FEFD;"><i class="fas fa-square-poll-vertical"></i></div>
                         Hasil
@@ -41,14 +37,7 @@
             <div class="card-header d-flex justify-content-between">
                 <h5 class="my-0"><i class="fas fa-table me-1"></i>Data Table User</h5>
                 <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Actions
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end w-25 p-3" aria-labelledby="dropdownMenuButton">
-                        <li><a href="{{ route('user.create') }}"><button class="btn btn-success">Create</button></a></li>
-                        <hr>
-                        <li><button class="btn btn-danger" href="#">Cetak PDF</button></li>
-                    </ul>
+                    <button class="btn btn-danger" href="#">Cetak PDF</button>
                 </div>
             </div>
             <div class="card-body">
@@ -57,38 +46,24 @@
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Alamat</th>
-                            <th>No.Telephone</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th>Pekerjaan</th>
+                            <th>Telepon</th>
+                            <th>Role ID</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Alamat</th>
-                            <th>No.Telephone</th>
-                            <th>Role</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
+                        @foreach($user as $u)
                         <tr>
-                            <td>Indra Syaputra Stiansyah</td>
-                            <td>indra@gmail.com</td>
-                            <td>Tulungagung</td>
-                            <td>085606072656</td>
-                            <td>User</td>
-                            <td>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-warning">Delete</button>
-                            </td>
+                            <td>{{ $u->nama }}</td>
+                            <td>{{ $u->email }}</td>
+                            <td>{{ $u->pekerjaan }}</td>
+                            <td>{{ $u->telp }}</td>
+                            <td>{{ $u->role_id }}</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
     @endsection

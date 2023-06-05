@@ -14,7 +14,9 @@
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -49,7 +51,7 @@
     </header><!-- End Header -->
 
     <main id="main">
-        <form class="user" method="POST">
+        <form class="user" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="box-form" style="margin-top : 130px">
                 <div class="left">
@@ -60,25 +62,27 @@
                     </div>
                 </div>
                 <div class="right">
-                    @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>@foreach ($errors->all() as $item)
-                            <li>{{ $item }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $item)
+                                    <li>{{ $item }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
                     <h5 align="center">Login</h5>
                     <div class="inputs" align="center">
-                        {{-- <label></label> --}}
-                        <input type="email" name="email" placeholder="Email">
+                        <input type="email" name="email" placeholder="Enter your username or email">
                         <br>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;">
                     </div>
                     <br>
-                    <p align="center">Don't have an account? <a href="{{ route('signup') }}">Creat Your Account</a></p>
+                    <p align="center">Don't have an account? <a href="{{ route('register') }}">Creat Your Account</a>
+                    </p>
                     <div class="d-flex justify-content-center">
-                        <button>Login</button>
+                        <button type="submit">Login</button>
                     </div>
                 </div>
             </div>

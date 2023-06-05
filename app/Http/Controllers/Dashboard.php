@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\penyakit;
-use App\Models\hama;
-use App\Models\obat;
-use App\Models\gejala;
-use App\Models\aturan_penyakit;
-use App\Models\aturan_hama;
+use App\Models\{
+    penyakit,
+    obat,
+    gejala,
+    hama,
+    aturan_penyakit,
+    aturan_hama,
+    hasil,
+    hasil_hama,
+    user
+};
 
 class Dashboard extends Controller
 {
@@ -33,10 +38,24 @@ class Dashboard extends Controller
     }
 
     function admin(){
-        return view('pages.admin-layout.dashboard');
+        $users = user::all();
+        $user = user::count();
+        $array = [
+            'user' =>$user,
+            'users' =>$users,
+        ];
+        return view('pages.admin-layout.dashboard', $array);
     }
 
     function user(){
-        return view('pages.user-layout.dashboard');
+        $user = user::where('role_id', 3)->get();
+        $konsulPenyakit = hasil::count();
+        $konsulHama = hasil_hama::count();
+        $array = [
+            'user' => $user,
+            'konsulPenyakit' => $konsulPenyakit,
+            'konsulHama' => $konsulHama,
+        ];
+        return view('pages.user-layout.dashboard', $array);
     }
 }
